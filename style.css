@@ -1,0 +1,260 @@
+/* ~~~~~~~~~~~~~~~~~ TOP BAR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.topbar {
+	background-image: url("topbaredit.jpg");
+}
+
+.logo {
+	height: 100px;
+	width: 240px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~ TOOLBAR ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0000cd;
+}
+
+li {
+    float: left;
+    margin-left: 170px;
+    margin-right: 170px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+}
+
+li a:hover {
+	color: gray;
+}
+
+.toolbar {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~ LANDING PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.landingbtn {
+	font-size: 20px;
+	background: #5293E7;
+	color: white;
+	border-radius: 10px;
+	border: #4B85CF;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px
+}
+
+.aboutbtn {
+	margin-left: 150px;
+	margin-top: 510px;
+	display: inline-block;
+}
+
+.runmodel {
+	display: inline-block;
+	margin-right: 500px;
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~ GRAPH PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.left {
+	display:inline-block;
+	float: left;
+	margin-left: 80px;
+}
+
+
+/* Function button group */
+.functionbtn {
+	display: block;
+	width: 200px;
+	margin-top: 8px;
+	border-radius: 10px;
+	font-size: 15px;
+	padding: 5px;
+	background-color: #CECFC7;
+
+}
+
+.btngroup {
+	padding: 10px;
+	background-color: #0000cd;
+	width: 230px;
+	height: 200px;
+	margin-left: 100px;
+	margin-top: 60px;
+	border: black 1px solid;
+	display:inline-block;
+	float: left;
+}
+
+
+/* Axis */
+.dropdowngroup {
+	background-color: #0000cd;
+	width: 250px;
+	margin-left: 90px;
+	padding: 10px;
+	border: 1px solid black;
+	margin-top: 280px;
+}
+
+
+.dropdown {
+	width: 150px;
+	display: inline-block;
+}
+
+.dropdownsize {
+	width: 165px;
+	display: inline-block;
+}
+
+.labels {
+	display: inline-block;
+	color: white;
+}
+
+.ygraph {
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	width: 100px;
+	height: 350px;
+	display:inline-block;
+	margin-top: 60px;
+	margin-left: 100px;
+	float: left;
+
+}
+
+.xgraph {
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	width: 350px;
+	height: 80px;
+	display: inline-block;
+	float: right;
+	margin-right: 290px;
+	margin-top: 20px;
+}
+
+.graph {
+	border: 1px solid black;
+	width: 350px;
+	height: 350px;
+	display: inline-block;
+	margin-top: 60px;
+	float: left;
+	margin-left: 20px;
+	margin-right: 200px;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~ DATA PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.dates {
+	border: 1px solid black;
+	margin-top: 80px;
+	width: 1000px;
+	padding: 10px;
+	height: 70px;
+}
+
+.circle {
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.pastdate {
+	font-size: 15px;
+	font-weight: bold;
+	float: left;
+	margin-left: 50px;
+}
+
+.currentdate {
+	font-size: 15px;
+	font-weight: bold;
+	float: right;
+	margin-right: 50px;
+}
+
+.growthdiv {
+	border: 1px solid black;
+	height: 300px;
+	width: 300px;
+	margin-top: 40px;
+	display: inline-block;
+	float: left;
+}
+
+.survivaldiv {
+	border: 1px solid black;
+	height: 300px;
+	width: 300px;
+	margin-top: 40px;
+	display: inline-block;
+	margin-left: 50px;
+	float: right
+}
+
+.graphtitle {
+	border: 1px black solid;
+	width: 100px;
+	text-align: center;
+	margin-top: 20px;
+	font-weight: bold;
+	background: #C6C7C4;
+}
+
+.growthgraph {
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	height: 200px;
+	width: 200px;
+	margin-left: 40px;
+	margin-top: 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
