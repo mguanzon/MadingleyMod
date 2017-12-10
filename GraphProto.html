@@ -3,7 +3,7 @@
 
 <style>
 .link {stroke: white;}
-.node {stroke: white; stroke-width: 3px;}
+.node {stroke: gray; stroke-width: 3px;} /* white */
 </style>
 
 <body>
@@ -11,8 +11,15 @@
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 <script>
+var color = localStorage.getItem("color");
 
-var width = 400, height = 400, colors = d3.scale.category10();
+if (color == "true") {
+  var width = 400, height = 400, colors = d3.scale.category10(); 
+}
+else {
+  var width = 400, height = 400, colors = d3.rgb(0,0,0); //d3.scale.category10(); 
+  var list = randomChoose(unorderedPairs(d3.range(n)), m);
+}
 
 var n = 30, // number of nodes
     m = 40, // number of links
@@ -29,6 +36,7 @@ function create () {
   svg.selectAll(".link, .node").remove();
   randomGraph(n, m, charge);
 }
+
 
 function randomGraph (n, m, charge) { //creates a random graph on n nodes and m links
   var nodes = d3.range(n).map(Object),

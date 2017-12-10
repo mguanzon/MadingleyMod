@@ -155,12 +155,12 @@ li a:hover {
 }
 
 .graph {
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	width: 350px;
 	height: 350px;
 	display: inline-block;
 	float: left;
-	margin-left: 20px;
+	margin-left: 0px;
 }
 
 /* X Axis Labels */

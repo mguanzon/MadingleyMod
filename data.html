@@ -85,6 +85,7 @@ function dataBtnClick(elem) {
 				document.getElementById(myId).style.border = "2px solid black";
 		}
 	}
+	alert("Date chosen!");
 
 }	
 
@@ -95,6 +96,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
+/* Creates randomized graphs */
 var trace = {
 	x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
 	y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
@@ -155,9 +157,6 @@ Plotly.newPlot("survivalgraph", data2, layout2);
 
 
 </script>
-
-
-
 
 
 

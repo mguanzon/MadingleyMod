@@ -6,6 +6,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="script.js"> </script>
+	<script src="plotly-latest.min.js"></script>
 	<link rel="stylesheet" href="style.css">
 	<title> Graph </title>
 
@@ -35,7 +36,7 @@
 <div class="left">
 	<!-- Group of buttons --> 
 	<div class="btngroup"><center>
-		<button class="functionbtn"> Color by Function Group </button>
+		<button class="functionbtn" onclick="colorByFunction()"> Color by Function Group </button>
 		<button class="functionbtn"> Show Interactions </button>
 		<button class="functionbtn"> Autoscale Plot </button>
 		<button class="functionbtn"> Heatmap </button>
@@ -101,11 +102,9 @@
 	<!-- Actual Graph -->
 	<div class="graph" id = "graph">
         
-        <!-- <body> -->
-        <iframe id="frame" src="GraphProto.html" height="348" width = "348" document.getElementById("graph").offsetWidth>
+        <!-- <iframe id="frame" src="GraphProto.html" height="348" width = "348" document.getElementById("graph").offsetWidth>
             Alternative text for browsers that do not understand IFrames.
-        </iframe>
-        <!-- </body>--> 
+        </iframe>-->
 
 	</div>
 
@@ -132,13 +131,140 @@
 
 
 <script>
+
+
+/* FOR THE GRAPH!!! */
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+/* CODE TO MAKE GRAPH */
+function makeGraph () {
+	var trace1 = {
+	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+
+	  mode: 'markers',
+	  marker: {
+	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+	    color: "gray",
+	  }
+	};
+
+	var trace2 = {
+	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+
+	  mode: 'markers',
+	  marker: {
+	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+	    color: "gray",
+	  }
+	};
+
+	var trace3 = {
+	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+
+	  mode: 'markers',
+	  marker: {
+	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+	    color: "gray",
+	  }
+	};
+
+	var trace4 = {
+	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+
+	  mode: 'markers',
+	  marker: {
+	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+	    color: "gray",
+	  }
+	};
+
+	var trace5 = {
+	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+
+	  mode: 'markers',
+	  marker: {
+	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+	    color: "gray",
+	  }
+	};
+
+	var data = [trace1, trace2, trace3, trace4, trace5];
+
+	var layout = {
+	  autosize: false,
+	  width: 350,
+	  height: 350,
+	  margin: {
+	    l: 0,
+	    r: 0,
+	    b: 0,
+	    t: 0,
+	    pad: 0
+	  },
+	    xaxis: {
+	  	showline: false,
+	  	showgrid: false
+	  },
+	  yaxis: {
+	  	showline: false,
+	  	showgrid: false
+	  },
+	  showlegend: false,
+
+	};
+
+	var graph = Plotly.newPlot("graph", data, layout);
+}
+
+/* MAKES THE GRAPH */
+makeGraph();
+
+
 function onchangeEvent () {
   create(); 
   document.getElementById("frame").src = "GraphProto.html";
 }
+
+function clicked() {
+	if( localStorage.getItem("color") == "yes") {
+		localStorage.setItem("color", "no");
+	}
+	else {
+		localStorage.setItem("color", "yes");
+	}
+
+}
+
+function colorGraph() {
+	if(localStorage.getItem("color") == "yes") {
+		var update ={
+			"marker.color": ["red", "green", "orange", "blue", "yellow"]
+		};	
+		Plotly.restyle("graph", update);
+	}
+	else {
+		var update ={
+			"marker.color": "gray"
+		};	
+		Plotly.restyle("graph", update);
+	}
+}
+
+function colorByFunction() {
+	colorGraph();
+	clicked();
+}
+
 </script>
-
-
 
 
 
