@@ -4,6 +4,8 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="script.js"> </script>
 	<link rel="stylesheet" href="style.css">
 	<title> Graph </title>
 
@@ -44,7 +46,7 @@
 	<div class="dropdowngroup"><center>
 		<form>
 			<label class="labels"> X-axis: </label>
-			<select class="dropdown">
+			<select class="dropdown" onchange="onchangeEvent()">
 				<option> Select option... </option>
 				<option> Adult body size </option>
 				<option> Current body size </option>
@@ -56,7 +58,7 @@
 
 		<form>
 			<label class="labels"> Y-axis: </label>
-			<select class="dropdown">
+			<select class="dropdown" onchange="onchangeEvent()">
 				<option> Select option... </option>
 				<option> Adult body size </option>
 				<option> Current body size </option>
@@ -69,7 +71,7 @@
 
 		<form>
 			<label class="labels"> Size: </label>
-			<select class="dropdownsize">
+			<select class="dropdownsize" onchange="onchangeEvent()">
 				<option> Select option... </option>
 				<option> Abundance </option>
 				<option> Trophic index </option>
@@ -89,12 +91,21 @@
 
 	<!-- Y Graph --> 
 	<div class="ygraph">
-
+        
 
 	</div>
+    
+    
+    
 
 	<!-- Actual Graph -->
-	<div class="graph">
+	<div class="graph" id = "graph">
+        
+        <!-- <body> -->
+        <iframe id="frame" src="GraphProto.html" height="348" width = "348" document.getElementById("graph").offsetWidth>
+            Alternative text for browsers that do not understand IFrames.
+        </iframe>
+        <!-- </body>--> 
 
 	</div>
 
@@ -113,18 +124,19 @@
 	</div>
 
 	<!-- X Graph -->
-	<div class="xgraph">
+	<div class="xgraph"
 
 	</div>
 
 
 
 
-
-
-
-
-
+<script>
+function onchangeEvent () {
+  create(); 
+  document.getElementById("frame").src = "GraphProto.html";
+}
+</script>
 
 
 

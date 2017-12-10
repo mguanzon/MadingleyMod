@@ -4,6 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="plotly-latest.min.js"></script>
 	<link rel="stylesheet" href="style.css">
 	<title> Data </title>
 
@@ -31,20 +32,20 @@
 
 	<!-- Circles for dates -->
 	<center><div class="dates">
-		<button class="circle" style="background: #41752C;"></button>
-		<button class="circle" style="background: #429F1C;"></button>
-		<button class="circle" style="background: #56C628;"></button>
-		<button class="circle" style="background: #53EA15;"></button>
-		<button class="circle" style="background: #69E436;"></button>
-		<button class="circle" style="background: #A3F582;"></button>
-		<button class="circle" style="background: #D1F4C3;"></button>
-		<button class="circle" style="background: #E0F8A7;"></button>
-		<button class="circle" style="background: #E1ED91;"></button>
-		<button class="circle" style="background: #E7E267;"></button>
-		<button class="circle" style="background: #EDEA40;"></button>
-		<button class="circle" style="background: #EDDC40;"></button>
-		<button class="circle" style="background: #F1DA2A;"></button>
-		<button class="circle" style="background: #D1C91B;"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #41752C;" id="1"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #429F1C;" id="2"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #56C628;" id="3"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #53EA15;" id="4"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #69E436;" id="5"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #A3F582;" id="6"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #D1F4C3;" id="7"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #E0F8A7;" id="8"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #E1ED91;" id="9"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #E7E267;" id="10"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #EDEA40;" id="11"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #EDDC40;" id="12"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #F1DA2A;" id="13"></button>
+		<button onclick="dataBtnClick(this)" class="circle" style="background: #D1C91B;" id="14"></button>
 		<p class="pastdate"> Past Date</p>
 		<p class="currentdate"> Current Date </p>
 	</div></center>
@@ -53,7 +54,7 @@
 	<div class= "growthdiv">
 		<center><p class="graphtitle"> Growth </p></center>
 		<!-- Div to put actual graph in -->
-		<div class="growthgraph">
+		<div class="growthgraph" id="growthgraph">
 
 		</div>
 	</div>
@@ -63,7 +64,7 @@
 	<div class="survivaldiv">
 		<center><p class="graphtitle"> Survival </p></center>
 		<!-- Div to put actual graph in -->		
-		<div class="growthgraph">
+		<div class="growthgraph" id="survivalgraph">
 			
 		</div>
 
@@ -72,11 +73,88 @@
 
 
 
+<script>
+function dataBtnClick(elem) {
+	var myId = elem.id;
+	for ( i = 1; i < 15; i++) {
+		var ids = document.getElementById(i);
+		if ( ids.id != myId ) {
+			ids.style.border = "2px solid #D3D3D3";
+		}
+		else {
+				document.getElementById(myId).style.border = "2px solid black";
+		}
+	}
+
+}	
 
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+var trace = {
+	x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+	y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+};
+
+var trace2 = {
+	x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+	y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+};
+
+var data = [trace];
+var data2 = [trace2];
+
+var layout = {
+  autosize: false,
+  width: 200,
+  height: 200,
+  margin: {
+    l: 0,
+    r: 0,
+    b: 0,
+    t: 0,
+    pad: 0
+  },
+  xaxis: {
+  	showline: false,
+  	showgrid: false
+  },
+  yaxis: {
+  	showline: false,
+  	showgrid: false
+  },
+};
+
+var layout2 = {
+  autosize: false,
+  width: 200,
+  height: 200,
+  margin: {
+    l: 0,
+    r: 0,
+    b: 0,
+    t: 0,
+    pad: 0
+  },
+    xaxis: {
+  	showline: false,
+  	showgrid: false
+  },
+  yaxis: {
+  	showline: false,
+  	showgrid: false
+  },
+};
+
+Plotly.newPlot("growthgraph", data, layout);
+Plotly.newPlot("survivalgraph", data2, layout2);
 
 
-
+</script>
 
 
 
