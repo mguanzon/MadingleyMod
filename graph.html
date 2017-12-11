@@ -37,8 +37,8 @@
 	<!-- Group of buttons --> 
 	<div class="btngroup"><center>
 		<button class="functionbtn" onclick="colorByFunction()"> Color by Function Group </button>
-		<button class="functionbtn"> Show Interactions </button>
-		<button class="functionbtn"> Autoscale Plot </button>
+		<button class="functionbtn" onclick="showInteractions()"> Show Interactions </button>
+		<button class="functionbtn" onclick="autoscalePlot()"> Autoscale Plot </button>
 		<button class="functionbtn"> Heatmap </button>
 	</center></div>
 
@@ -91,7 +91,7 @@
 
 
 	<!-- Y Graph --> 
-	<div class="ygraph">
+	<div class="ygraph" id="ygraph">
         
 
 	</div>
@@ -123,15 +123,15 @@
 	</div>
 
 	<!-- X Graph -->
-	<div class="xgraph"
+	<div class="xgraph" id="xgraph"> 
 
 	</div>
 
 
 
-
+<!-- JAVASCRIPT!!!!! -->
 <script>
-
+var myPlot = document.getElementById("graph");
 
 /* FOR THE GRAPH!!! */
 function getRandomInt(min, max) {
@@ -210,7 +210,7 @@ function makeGraph () {
 	    t: 0,
 	    pad: 0
 	  },
-	    xaxis: {
+	  xaxis: {
 	  	showline: false,
 	  	showgrid: false
 	  },
@@ -219,19 +219,20 @@ function makeGraph () {
 	  	showgrid: false
 	  },
 	  showlegend: false,
+	  hovermode: "closest",
 
 	};
 
-	var graph = Plotly.newPlot("graph", data, layout);
+	Plotly.newPlot("graph", data, layout);
 }
 
 /* MAKES THE GRAPH */
 makeGraph();
 
 
+/* BUTTON/DROPDOWN FUNCTIONS HERE */
 function onchangeEvent () {
-  create(); 
-  document.getElementById("frame").src = "GraphProto.html";
+	makeGraph();
 }
 
 function clicked() {
@@ -241,7 +242,6 @@ function clicked() {
 	else {
 		localStorage.setItem("color", "yes");
 	}
-
 }
 
 function colorGraph() {
@@ -262,6 +262,117 @@ function colorGraph() {
 function colorByFunction() {
 	colorGraph();
 	clicked();
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;  
+}
+
+localStorage.setItem("plots", "yes");
+function makePlots() {
+
+	/* Y axis graph */
+	var trace1 = {
+		x: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+		y: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+	};
+
+	var trace2 = {
+		x: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+		y: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+	};
+
+	var trace3 = {
+		x: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+		y: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+	};
+
+	var ydata = [trace1, trace2, trace3];
+	
+	var ylayout = {
+	  autosize: false,
+	  width: 100,
+	  height: 350,
+	  margin: {
+	    l: 0,
+	    r: 0,
+	    b: 0,
+	    t: 0,
+	    pad: 0
+	  },
+	  xaxis: {
+	  	showline: false,
+	  	showgrid: false
+	  },
+	  yaxis: {
+	  	showline: false,
+	  	showgrid: false
+	  },
+	  showlegend: false,
+	};
+
+	Plotly.newPlot("ygraph", ydata, ylayout);
+
+	var trace4 = {
+		x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+		y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+	};
+
+	var xdata = [trace4];
+
+	var xlayout = {
+	  autosize: false,
+	  width: 350,
+	  height: 80,
+	  margin: {
+	    l: 0,
+	    r: 0,
+	    b: 0,
+	    t: 0,
+	    pad: 0
+	  },
+	  xaxis: {
+	  	showline: false,
+	  	showgrid: false
+	  },
+	  yaxis: {
+	  	showline: false,
+	  	showgrid: false
+	  },
+	  showlegend: false,
+	};
+
+	Plotly.newPlot("xgraph", xdata, xlayout);
+
+}
+
+function clickedAutoscale() {
+	if( localStorage.getItem("plots") == "yes") {
+		localStorage.setItem("plots", "no");
+	}
+	else {
+		localStorage.setItem("plots", "yes");
+	}
+}
+
+function autoscalePlot() {
+	if( localStorage.getItem("plots") == "yes") {
+		makePlots();
+		document.getElementById("xgraph").style.visibility = "visible";
+		document.getElementById("ygraph").style.visibility = "visible";
+	}
+	else {
+		document.getElementById("xgraph").style.visibility = "hidden";
+		document.getElementById("ygraph").style.visibility = "hidden";
+	}
+	clickedAutoscale();
+}
+
+
+function showInteractions() {
+	makeGraph();
 }
 
 </script>
