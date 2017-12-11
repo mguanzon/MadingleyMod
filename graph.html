@@ -39,7 +39,7 @@
 		<button class="functionbtn" onclick="colorByFunction()"> Color by Function Group </button>
 		<button class="functionbtn" onclick="showInteractions()"> Show Interactions </button>
 		<button class="functionbtn" onclick="autoscalePlot()"> Autoscale Plot </button>
-		<button class="functionbtn"> Heatmap </button>
+		<button class="functionbtn" onclick="heatmap()"> Heatmap </button>
 	</center></div>
 
 
@@ -47,7 +47,7 @@
 	<div class="dropdowngroup"><center>
 		<form>
 			<label class="labels"> X-axis: </label>
-			<select class="dropdown" onchange="onchangeEvent()">
+			<select class="dropdown" id="xlabel" onchange="onchangeEvent()">
 				<option> Select option... </option>
 				<option> Adult body size </option>
 				<option> Current body size </option>
@@ -59,7 +59,7 @@
 
 		<form>
 			<label class="labels"> Y-axis: </label>
-			<select class="dropdown" onchange="onchangeEvent()">
+			<select class="dropdown" id="ylabel" onchange="onchangeEvent()">
 				<option> Select option... </option>
 				<option> Adult body size </option>
 				<option> Current body size </option>
@@ -72,7 +72,7 @@
 
 		<form>
 			<label class="labels"> Size: </label>
-			<select class="dropdownsize" onchange="onchangeEvent()">
+			<select class="dropdownsize" id="sizelabel" onchange="onchangeEvent()">
 				<option> Select option... </option>
 				<option> Abundance </option>
 				<option> Trophic index </option>
@@ -83,10 +83,10 @@
 </div>
 
 	<div class="xaxis">
-		<p class="xaxislabels"> Animal 1 </p>
-		<p class="xaxislabels"> Animal 2 </p>
-		<p class="xaxislabels"> Animal 3 </p>
-		<p class="xaxislabels"> Animal 4 </p>
+		<p class="xaxislabels"> Aphid </p>
+		<p class="xaxislabels"> Woodlouse </p>
+		<p class="xaxislabels"> Mongoose </p>
+		<p class="xaxislabels"> Elephant </p>
 	</div>
 
 
@@ -110,7 +110,7 @@
 
 	<!-- Y Axis Labels -->
 	<div class="yaxis"> 
-		<p> Animal 1 </p>
+		<p> Mongoose</p>
 		</br>
 		</br>
 		</br>
@@ -119,7 +119,7 @@
 		</br>
 		</br>
 		</br>
-		<p> Animal 2 </p>
+		<p> Woodlouse </p>
 	</div>
 
 	<!-- X Graph -->
@@ -141,93 +141,98 @@ function getRandomInt(min, max) {
 }
 
 /* CODE TO MAKE GRAPH */
+var xlabel = document.getElementById("xlabel").value;
+var ylabel = document.getElementById("ylabel").value;
+var sizelabel = document.getElementById("sizelabel").value;
+
+
 function makeGraph () {
-	var trace1 = {
-	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+		document.getElementById("graph").style.border="none";
+		var trace1 = {
+		  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
 
-	  mode: 'markers',
-	  marker: {
-	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
-			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
-	    color: "gray",
-	  }
-	};
+		  mode: 'markers',
+		  marker: {
+		  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+				   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+		    color: "gray",
+		  }
+		};
 
-	var trace2 = {
-	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+		var trace2 = {
+		  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
 
-	  mode: 'markers',
-	  marker: {
-	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
-			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
-	    color: "gray",
-	  }
-	};
+		  mode: 'markers',
+		  marker: {
+		  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+				   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+		    color: "gray",
+		  }
+		};
 
-	var trace3 = {
-	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+		var trace3 = {
+		  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
 
-	  mode: 'markers',
-	  marker: {
-	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
-			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
-	    color: "gray",
-	  }
-	};
+		  mode: 'markers',
+		  marker: {
+		  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+				   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+		    color: "gray",
+		  }
+		};
 
-	var trace4 = {
-	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+		var trace4 = {
+		  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
 
-	  mode: 'markers',
-	  marker: {
-	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
-			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
-	    color: "gray",
-	  }
-	};
+		  mode: 'markers',
+		  marker: {
+		  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+				   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+		    color: "gray",
+		  }
+		};
 
-	var trace5 = {
-	  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+		var trace5 = {
+		  y: [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
 
-	  mode: 'markers',
-	  marker: {
-	  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
-			   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
-	    color: "gray",
-	  }
-	};
+		  mode: 'markers',
+		  marker: {
+		  	size: [getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40),
+				   getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40), getRandomInt(0, 40)],
+		    color: "gray",
+		  }
+		};
 
-	var data = [trace1, trace2, trace3, trace4, trace5];
+		var data = [trace1, trace2, trace3, trace4, trace5];
 
-	var layout = {
-	  autosize: false,
-	  width: 350,
-	  height: 350,
-	  margin: {
-	    l: 0,
-	    r: 0,
-	    b: 0,
-	    t: 0,
-	    pad: 0
-	  },
-	  xaxis: {
-	  	showline: false,
-	  	showgrid: false
-	  },
-	  yaxis: {
-	  	showline: false,
-	  	showgrid: false
-	  },
-	  showlegend: false,
-	  hovermode: "closest",
+		var layout = {
+		  autosize: false,
+		  width: 350,
+		  height: 350,
+		  margin: {
+		    l: 0,
+		    r: 0,
+		    b: 0,
+		    t: 0,
+		    pad: 0
+		  },
+		  xaxis: {
+		  	showline: false,
+		  	showgrid: false
+		  },
+		  yaxis: {
+		  	showline: false,
+		  	showgrid: false
+		  },
+		  showlegend: false,
+		  hovermode: "closest",
 
-	};
+		};
 
-	Plotly.newPlot("graph", data, layout);
+		Plotly.newPlot("graph", data, layout);
+
 }
 
-/* MAKES THE GRAPH */
-makeGraph();
 
 
 /* BUTTON/DROPDOWN FUNCTIONS HERE */
@@ -373,6 +378,70 @@ function autoscalePlot() {
 
 function showInteractions() {
 	makeGraph();
+}
+
+localStorage.setItem("heatmap", "true");
+function clickedHeatmap() {
+	if( localStorage.getItem("heatmap") == "true") {
+		localStorage.setItem("heatmap", "false");
+	}
+	else {
+		localStorage.setItem("heatmap", "true");
+	}
+}
+
+function heatmap() {
+	if( localStorage.getItem("heatmap") == "true") {
+		var data = [
+		  {
+		    z: [[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)], 
+		    	[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)], 
+		    	[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+		    	[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+		  	    [getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)],
+
+				[getRandomInt(0, 20), getRandomInt(0, 20), getRandomInt(0, 20)]],
+		    type: 'heatmap'
+		  }
+		];
+
+		var layout = {
+		  autosize: false,
+		  width: 360,
+		  height: 350,
+		  margin: {
+		    l: 0,
+		    r: 0,
+		    b: 0,
+		    t: 0,
+		    pad: 0
+		  },
+		  xaxis: {
+		  	showline: false,
+		  	showgrid: false,
+
+		  },
+		  yaxis: {
+		  	showline: false,
+		  	showgrid: false,
+		  },
+		  showlegend: false,
+
+		};
+
+		Plotly.newPlot("graph", data, layout);
+	}
+	else {
+		makeGraph();
+	}
+	clickedHeatmap();
 }
 
 </script>

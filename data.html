@@ -30,6 +30,19 @@
 		</ul>
 	</div>
 
+	<center><div class="drop">
+		<center><form>
+			<label class="labels"> Cohort: </label>
+			<select class="dropdownsize" id="dropdown" onchange="makeGraphs()">
+				<option> Select option... </option>
+				<option> Aphid </option>
+				<option> Woodlouse </option>
+				<option> Mongoose </option>
+				<option> Elephant </option>
+			</select>
+		</form></center>
+	</div></center>
+
 	<!-- Circles for dates -->
 	<center><div class="dates">
 		<button onclick="dataBtnClick(this)" class="circle" style="background: #41752C;" id="1"></button>
@@ -85,8 +98,8 @@ function dataBtnClick(elem) {
 				document.getElementById(myId).style.border = "2px solid black";
 		}
 	}
-	alert("Date chosen!");
-
+	localStorage.setItem("btn", "clicked");
+	makeGraphs();
 }	
 
 
@@ -97,63 +110,71 @@ function getRandomInt(min, max) {
 }
 
 /* Creates randomized graphs */
-var trace = {
-	x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
-	y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
-};
+function makeGraphs() {
+	if( (localStorage.getItem("btn") == "clicked") && (document.getElementById("dropdown").value != " Select option... ") ) { 
+		document.getElementById("growthgraph").style.border = "none";
+		document.getElementById("survivalgraph").style.border = "none";
 
-var trace2 = {
-	x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
-	y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
-};
+		var trace = {
+			x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+			y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+		};
 
-var data = [trace];
-var data2 = [trace2];
+		var trace2 = {
+			x: [getRandomInt(0, 3), getRandomInt(3, 6), getRandomInt(6, 9),getRandomInt(9, 12) ],
+			y: [getRandomInt(0, 5), getRandomInt(0, 5), getRandomInt(0, 5),getRandomInt(0, 5) ],
+		};
 
-var layout = {
-  autosize: false,
-  width: 200,
-  height: 200,
-  margin: {
-    l: 0,
-    r: 0,
-    b: 0,
-    t: 0,
-    pad: 0
-  },
-  xaxis: {
-  	showline: false,
-  	showgrid: false
-  },
-  yaxis: {
-  	showline: false,
-  	showgrid: false
-  },
-};
+		var data = [trace];
+		var data2 = [trace2];
 
-var layout2 = {
-  autosize: false,
-  width: 200,
-  height: 200,
-  margin: {
-    l: 0,
-    r: 0,
-    b: 0,
-    t: 0,
-    pad: 0
-  },
-    xaxis: {
-  	showline: false,
-  	showgrid: false
-  },
-  yaxis: {
-  	showline: false,
-  	showgrid: false
-  },
-};
+		var layout = {
+		  autosize: false,
+		  width: 200,
+		  height: 200,
+		  margin: {
+		    l: 0,
+		    r: 0,
+		    b: 0,
+		    t: 0,
+		    pad: 0
+		  },
+		  xaxis: {
+		  	showline: false,
+		  	showgrid: false
+		  },
+		  yaxis: {
+		  	showline: false,
+		  	showgrid: false
+		  },
+		};
 
-Plotly.newPlot("growthgraph", data, layout);
-Plotly.newPlot("survivalgraph", data2, layout2);
+		var layout2 = {
+		  autosize: false,
+		  width: 200,
+		  height: 200,
+		  margin: {
+		    l: 0,
+		    r: 0,
+		    b: 0,
+		    t: 0,
+		    pad: 0
+		  },
+		    xaxis: {
+		  	showline: false,
+		  	showgrid: false
+		  },
+		  yaxis: {
+		  	showline: false,
+		  	showgrid: false
+		  },
+		};
+
+		Plotly.newPlot("growthgraph", data, layout);
+		Plotly.newPlot("survivalgraph", data2, layout2);
+	}
+}
+
 
 
 </script>

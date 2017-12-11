@@ -151,7 +151,7 @@ li a:hover {
 }
 
 .graph {
-	/*border: 1px solid black;*/
+	border: 1px solid black;
 	width: 350px;
 	height: 350px;
 	display: inline-block;
@@ -186,7 +186,7 @@ li a:hover {
 
 .dates {
 	border: 1px solid black;
-	margin-top: 80px;
+	margin-top: 40px;
 	width: 1000px;
 	padding: 10px;
 	height: 70px;
@@ -245,12 +245,23 @@ li a:hover {
 }
 
 .growthgraph {
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
 	height: 200px;
 	width: 200px;
 	margin-left: 40px;
 	margin-top: 20px;
 
 }
+
+.drop {
+	background: #0000cd;
+	width: 250px;
+	margin-top: 40px;
+	padding-top: 5px;
+	border: 1px solid black;
+}
+
 
 /* Ploty */
 .modebar{
